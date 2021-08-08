@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>PWA Tutorial</title>
+    <meta name="apple-mobile-web-app-status-bar" content="#aa7700" />
+    <meta name="theme-color" content="black" />
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="images/icon-192x192.png" />
+  </head>
+
+  <body>
+    <p>To test this demo, we use VS code live server extension.</p>
+    <p>
+      For service worker to register without a https server, add local running
+      URL to
+      <code> chrome://flags Insecure origins treated as secure </code>
+      setting.
+    </p>
+    <script>
+      window.addEventListener("load", () => {
+        registerSW();
+      });
+
+      async function registerSW() {
+        if ("serviceWorker" in navigator) {
+          try {
+            await navigator.serviceWorker.register("service-worker.js");
+          } catch (e) {
+            console.log("SW registration failed", e);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>
